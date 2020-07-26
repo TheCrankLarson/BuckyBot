@@ -1,0 +1,14 @@
+{
+    "name": "buckybot",
+    "version": "1.0.0",
+    "description": "Buckyball Racing Bot",
+    "main": "bot.js",
+    "author": "Crank Larson",
+    "dependencies": {
+        "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
+        "htmlparser": "^1.7.7",
+        "htmlparser2": "^4.1.0",
+        "node-fetch": "^2.6.0",
+        "winston": "^3.3.3"
+    }
+}
