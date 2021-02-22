@@ -1,4 +1,4 @@
-const Discord = require('discord.io'); // https://github.com/Woor/discord.io/tree/gateway_v6  https://www.wikihow.com/Create-a-Bot-in-Discord
+﻿const Discord = require('discord.io'); // https://github.com/Woor/discord.io/tree/gateway_v6  https://www.wikihow.com/Create-a-Bot-in-Discord
 const auth = require('./auth.json');
 const fetch = require('node-fetch');
 const fs = require('fs');
@@ -12,7 +12,8 @@ var eventsWaitingUpdate = -1; // Keeps track of the number of events left to rea
 var readEventsReportChannel = null;
 
 const respondTo = [
-    'buckytest'
+    'buckybot',
+    'buckyball'
 ];/*
     'buckybot',
     'buckyball',
@@ -661,7 +662,7 @@ function FindRace(raceName,channelID)
     {
         bot.sendMessage({
             to: channelID,
-            message: 'No race found matching criteria: ' + raceName
+            message: 'Nope, you\'ve got me.  ' + raceName + " sounds like nonsense."
         });  
     }
 }
@@ -728,7 +729,7 @@ function FindWordsInEventDescription(words,channelID)
     {
         bot.sendMessage({
             to: channelID,
-            message: 'No race found matching criteria: with ' + location
+            message: 'Try again, I\'ve got nothing with ' + words
         });  
     }    
 }
@@ -799,7 +800,7 @@ function FindRaceAt(location,channelID)
     {
         bot.sendMessage({
             to: channelID,
-            message: 'No race found matching criteria: with ' + location
+            message: 'Is that a real place?  I\'ve got nothing on ' + location + '.'
         });  
     }
 }
@@ -915,7 +916,7 @@ function FindRaceIn(eventDate,channelID)
     {
         bot.sendMessage({
             to: channelID,
-            message: 'No race found matching date criteria: in ' + eventDate
+            message: 'Sorry, I\'ve got nothing for you.  Those dates are a haze...'
         });  
     }
 }
@@ -966,7 +967,7 @@ function FindRaceBy(author,channelID)
     {
         bot.sendMessage({
             to: channelID,
-            message: 'No race found matching criteria: by ' + author
+            message: 'I think ' + author + ' must be a made up name.  I\'ve never heard of them.'
         });  
     }
 }
@@ -1039,7 +1040,7 @@ function InitEvents()
     // Initialise our events
     // If we have a saved file, we load from there
 
-    var eventsData = fs.readFile(eventsDataFile, (err, data) => {
+    fs.readFile(eventsDataFile, (err, data) => {
         if (err)
         {
             console.log('Error while restoring events from file: ' + err);
@@ -1055,10 +1056,10 @@ function InitEvents()
 
 function InitPictures()
 {
-    // Initialise our events
+    // Initialise our pictures
     // If we have a saved file, we load from there
 
-    var picData = fs.readFile(picDataFile, (err, data) => {
+    fs.readFile(picDataFile, (err, data) => {
         if (err)
         {
             console.log('Error while restoring picture data from file: ' + err);
@@ -1066,7 +1067,10 @@ function InitPictures()
         else
         {
             quickGifs = JSON.parse(data);
-            console.log('Restored ' + quickGifs.length + ' pictures from ' + picDataFile);
+            var gifCount = 0;
+            for ( quickGIF in quickGifs )
+                gifCount++;
+            console.log('Restored ' + gifCount + ' pictures from ' + picDataFile);
         }
     });
 }
